@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>通用查询</title>
+		<link rel="stylesheet" type="text/css" href="./css/jquery/themes/default/easyui.css">
+		<link rel="stylesheet" type="text/css" href="./css/jquery/themes/icon.css">
+		<script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript" src="./js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="./My97DatePicker/WdatePicker.js"></script>
+		<script type="text/javascript" src="./search.js"></script>
+		
+		<style type="text/css">
+			body {
+			     margin:0; /* 必须 */
+			     border:0;
+			     height:100%; /* 必须 */
+			     overflow-y:auto;/* 必须 */
+			    }
+			#filter {display:block; top:10px; left:150px; width:130px; position:fixed;} /* IE并不认识fixed，而FF认识 */
+			* html #filter {position:absolute;} /* 这个只有IE认识 */
+			
+		</style>
+		<script type="text/javascript">
+			
+			var where = " where 1=1 ";
+			$(function(){
+				$('#filter').draggable({edge:5});
+				$('#filter').hide();
+			});
+			
+			function openDiv() {
+				$('#filter').show();
+			}
+			
+			function closeDiv() {
+				$('#filter').hide();
+			}
+		</script>
+	</head>
+	<body style="margin:0px">
+		
+		<a id="opendiv" href="#" class="easyui-linkbutton" onclick="openDiv()">打开高级检索</a>
+		<a id="closediv" href="#" class="easyui-linkbutton" onclick="closeDiv()">关闭高级检索</a>
+		
+		<div id="filter" style="margin:10px;padding:10px;width:600px;height:200px;background:#ddd;border:1px solid #ddd;">
+			<div id="filterTitle" style="background:#ccc;"><!--高级检索-->
+				<a id="find" href="#" class="easyui-linkbutton" onclick="findData()">开始检索</a>
+				<a id="add" href="#" class="easyui-linkbutton" onclick="addFilter()">增加</a>
+				<a id="del" href="#" class="easyui-linkbutton" onclick="delFilter()">删除</a>
+				<a id="up" href="#" class="easyui-linkbutton" onclick="upFilter()">上移</a>
+				<a id="down" href="#" class="easyui-linkbutton" onclick="downFilter()">下移</a>
+				<a id="clear" href="#" class="easyui-linkbutton" onclick="clearFilter()">清除</a>
+				<a id="closewin" href="#" class="easyui-linkbutton" onclick="closeDiv()">关闭高级检索</a>
+			</div>
+			<table id="filterTable" width="600px" border="1" style="font-size:10pt">
+				<tr>
+					<th width="50px">&nbsp;</th>
+					<!--<th>左括号</th>-->
+					<th width="100px">字段</th>
+					<th width="100px">操作符</th>
+					<th width="200px">内容</th>
+					<th width="100px">逻辑条件</th>
+					<!--<th>右括号</th>-->
+				</tr>
+				<tbody id="filterContent"></tbody>
+				<!--<tr></tr>-->
+			</table>
+		</div>
+	</body>
+	<div id="searchwin"></div>
+</html>
